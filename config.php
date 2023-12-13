@@ -1,7 +1,7 @@
 <?php
 
 $host="";
-$database="";
+$database="stock";
 $login="";
 $password="";
 

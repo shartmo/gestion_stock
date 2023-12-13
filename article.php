@@ -40,7 +40,7 @@ $MaListe->modifmoins($idtomodif);
 
 <p style="font-size:50px;"><a href="index.php">Retour</a></p>
 
-<form method="post" action="delete.php" onsubmit="return confirm('Confirmer suppression de cet article ?');">
+<form method="post" action="delete.php" onsubmit="return confirm('Confirmer la suppression de cet article ?');">
 <input type="hidden" name="idtosupprim" value="<?php echo $idtomodif ; ?>">
 <input type="submit" value="Supprimer cet article" style="font-size:40px">
 </form>

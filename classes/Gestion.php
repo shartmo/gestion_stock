@@ -63,7 +63,13 @@ class Gestion  {
 	   $quantite=0;
        $interdits=array("\"","'");
        $nomarticle=str_replace($interdits," ",$nomarticle);
+	   if(strlen($nomarticle) > 0 ){
 	   $this->connexion->exec("INSERT INTO articles (articles,quantite,secteur)VALUES('$nomarticle','$quantite','$secteur')");
+	   echo '<p><h1>Enregistrement effectué</h1/p>'; 	
+	   }
+	   else{
+	   echo '<p><h1>Aucun article à enregistrer</h1/p>';	;   
+	   }
    }
    
    public function deletearticle($id){

@@ -25,7 +25,7 @@ if(isset($_POST['nouveau'])){
 	
 	$MaListe->enregnewarticle($nom,$secteur);
 	
-	echo '<p><h1>Enregistrement effectué</h1/p>';
+	//echo '<p><h1>Enregistrement effectué</h1/p>';
 	
 	echo '<p><h1><a href="listing.php?secteur='.$secteur.'">Retour</a></h1></p>';
 	

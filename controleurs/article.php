@@ -1,5 +1,5 @@
 <?php
-include 'header.php';
+include '../templates/header.php';
 ?>
 
 <body>
@@ -10,11 +10,13 @@ include 'header.php';
 <h1 style="color:green">ARTICLE A MODIFIER</h1>
 
 <?php
-include 'config.inc.php';
+include '../config/config.inc.php';
 
-include 'autoload.php';
+include '../classes/Gestion.php';
 
-$MaListe=new Gestion();
+$config= realpath('../config/config.php');	
+
+$MaListe=new Gestion($config);
 
 if(isset($_GET['id'])){
 $idtomodif=	$_GET['id'];
@@ -38,7 +40,7 @@ $MaListe->modifmoins($idtomodif);
 
 ?>
 
-<p style="font-size:50px;"><a href="index.php">Retour</a></p>
+<p style="font-size:50px;"><a href="../index.php">Retour</a></p>
 
 <form method="post" action="delete.php" onsubmit="return confirm('Confirmer la suppression de cet article ?');">
 <input type="hidden" name="idtosupprim" value="<?php echo $idtomodif ; ?>">
@@ -47,5 +49,6 @@ $MaListe->modifmoins($idtomodif);
 
 </center>
 
-</body>
-</html>
+<?php
+include '../templates/footer.php';
+?>

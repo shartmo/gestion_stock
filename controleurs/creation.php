@@ -1,16 +1,18 @@
 <?php
-include 'header.php';
+include '../templates/header.php';
 ?>
 <body>
 <center>
 <h1 style="color:green">Ajouter un article</h1>
 
 <?php
-include 'config.inc.php';
+include '../config/config.inc.php';
 
-include 'autoload.php';
+include '../classes/Gestion.php';
 
-$MaListe=new Gestion();
+$config= realpath('../config/config.php');	
+
+$MaListe=new Gestion($config);
 
 if(isset($_GET['secteur'])){
 $secteur=$_GET['secteur'];
@@ -24,8 +26,6 @@ if(isset($_POST['nouveau'])){
 	$secteur=$_POST['secteur'];
 	
 	$MaListe->enregnewarticle($nom,$secteur);
-	
-	//echo '<p><h1>Enregistrement effectué</h1/p>';
 	
 	echo '<p><h1><a href="listing.php?secteur='.$secteur.'">Retour</a></h1></p>';
 	
@@ -43,8 +43,9 @@ if(isset($_POST['nouveau'])){
 <input type="submit" name="nouveau" value="Enregistrer" style="font-size:40px">
 </form>
 
-<p style="font-size:50px;"><a href="index.php">Retour</a></p
+<p style="font-size:50px;"><a href="../index.php">Retour</a></p
 
 </center>
-</body>
-</html>
+<?php
+include '../templates/footer.php';
+?>

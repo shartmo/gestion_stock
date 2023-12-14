@@ -4,10 +4,11 @@ class Gestion  {
 
       public $connexion;
 
-   function __construct(){
+   function __construct($config){
 
-            include 'config.php';   // le path du fichier de configuration est celui du fichier qui appelle la classe
-
+		
+			include $config ;
+		
             try
             {
                     $this->connexion = new PDO('mysql:host='.$host.';dbname='.$database, $login, $password);
@@ -130,6 +131,11 @@ class Gestion  {
 	}
    
    public function display_liste($secteur){
+	   
+	   $nombre_articles=0; // par nom
+	   
+	   $nombre_unites=0;  // stock réel
+	   
 	   echo '<table style="border: 1px solid black;font-size:50px;width:100%">';
 	
 		$sql=$this->connexion->query("SELECT id,articles,quantite FROM articles WHERE secteur='$secteur' ORDER BY articles ASC");   
@@ -138,7 +144,11 @@ class Gestion  {
 	  $idarticle=$ligne['id'];
       $article=$ligne['articles'];
 	  $quantite=$ligne['quantite'];
-	  echo '<tr><td style="border: 1px solid black;width:40%">'.$article.'</td>';
+	  
+	  $nombre_articles ++ ;
+	  $nombre_unites+=$quantite;
+	  
+	  	  echo '<tr><td style="border: 1px solid black;width:40%">'.$article.'</td>';
 	  
 	  $couleur="black";
 	  
@@ -159,6 +169,7 @@ class Gestion  {
    
      }	   
       echo '</table>';
+	  echo '<h1>Total articles : '.$nombre_articles.'('.$nombre_unites.' éléments)</h1>';
    }
 }
 

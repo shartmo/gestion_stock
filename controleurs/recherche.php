@@ -1,5 +1,5 @@
 <?php
-include 'header.php';
+include '../templates/header.php';
 ?>
 
 <body>
@@ -9,17 +9,19 @@ include 'header.php';
 
 <h1 style="color:green">RECHERCHE</h1>
 
-<p style="font-size:50px;"><a href="index.php">Retour</a></p>
+<p style="font-size:50px;"><a href="../index.php">Retour</a></p>
 
 <?php
 if(isset($_POST['recherche'])){
 	$mot=$_POST['mot'];
 	
-include 'config.inc.php';
+include '../config/config.inc.php';
 
-include 'autoload.php';
+include '../classes/Gestion.php';
 
-$MaListe=new Gestion();
+$config= realpath('../config/config.php');	
+
+$MaListe=new Gestion($config);
 	
 	$tableau=$MaListe->recherche($mot);
 	
@@ -41,5 +43,6 @@ $MaListe=new Gestion();
 </form>
 
 </center>
-</body>
-</html>
+<?php
+include '../templates/footer.php';
+?>
